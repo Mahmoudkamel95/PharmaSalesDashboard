@@ -26,7 +26,7 @@ else:
 
 # sidebar
 st.sidebar.header("Pharmaceutical Dashboard")
-st.sidebar.image(r"C:\Users\Swefi Store\Desktop\New folder\OIP.webp")
+st.sidebar.image("OIP.webp")
 
 st.sidebar.write("")
 st.sidebar.write("Filter your data:")
@@ -167,6 +167,7 @@ with st.expander("View Data"):
 # Download original DataSet  
 csv = df.to_csv(index = False).encode("utf=8")
 st.download_button("Download Data",data = csv , file_name = "Data.csv",mime = "text/csv")
+
 
 
 
