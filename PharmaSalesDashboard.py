@@ -21,7 +21,7 @@ if f1 is not None:
     st.write(filename)
     df=pd.read_csv(filename,encoding= "ISO-8859-1")
 else:
-    os.chdir(r"C:\Users\Swefi Store\Desktop\New folder")
+    
     df =pd.read_csv(r"C:\Users\Swefi Store\Desktop\New folder\pharma-data.csv",encoding= "ISO-8859-1") 
 
 # sidebar
@@ -108,22 +108,22 @@ with c2:
 
 st.subheader("Time Series Analysis")
 
-# ترتيب الشهور يدويًا
+
 month_order = ["January","February","March","April","May","June",
                "July","August","September","October","November","December"]
 
-# تجميع المبيعات حسب الشهر
+
 linechart = (
     filtered_df.groupby("Month")["Sales"].sum().reset_index()
 )
 
-# نخلي العمود Month مصنف (Categorical) عشان يترتب صح
+
 linechart["Month"] = pd.Categorical(linechart["Month"], categories=month_order, ordered=True)
 
-# نرتب القيم
+
 linechart = linechart.sort_values("Month")
 
-# نرسم الخط
+
 fig2 = px.line(
     linechart,
     x="Month",
@@ -158,22 +158,8 @@ with cl2:
     fig = px.pie(filtered_df , values ="Sales", names = "Country", template="gridon")
     fig.update_traces(text = filtered_df["Country"], textposition = "inside")
     st.plotly_chart(fig,use_container_width=True)
-#import plotly.figure_factory as ff
-#st.subheader(":point_right: Month wise Product Class Sales Summary")
-#with st.expander("Summary_Taple"):
- #   df_sample= df[0:5][["Year","Country","City","Product Class","Sales","Quantity","Quantity"]]
- #   fig = ff.create_table(df_sample, colorscale = "Cividis")
-  #  st.plotly_chart(fig, use_container_width=True)
-   # st.markdown("Month wise Sub-Category Table")
-    #filtered_df["Month"] = filtered_df["Order Date"].dt.month_name()
-    #sub_category_Year = pd.pivot_table(data = filtered_df, values = "Sales", index = ["Product Class"],columns="Month")
-    #st.write(sub_category_Year.style.background_gradient(cmap="Blues"))
 
 
-# create a scatter plot
-##data1 = px.scatter(filtered_df, x= "Sales", y = "Quantity", size = "Quantity")
-#Data1["layout"].update(title ="Relationship between Sales and profits using scatter plot.", titlefont = dict(size=20),xaxis = dict(title= "Sales",titlefont=dict(size=19)),yaxis=dict(title="Profit",titlefont=dict(size=19)))
-#st.plotly_chart(data1,use_container_width=True)
 
 with st.expander("View Data"):
     st.write(filtered_df.iloc[:500,1:20:2].style.background_gradient(cmap="Oranges"))
@@ -181,6 +167,7 @@ with st.expander("View Data"):
 # Download original DataSet  
 csv = df.to_csv(index = False).encode("utf=8")
 st.download_button("Download Data",data = csv , file_name = "Data.csv",mime = "text/csv")
+
 
 
 
