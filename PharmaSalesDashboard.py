@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt 
 import plotly.express as px 
 import streamlit as st
+import gdown
 import os
 import warnings
 warnings.filterwarnings("ignore")
@@ -22,7 +23,9 @@ if f1 is not None:
     df=pd.read_csv(filename,encoding= "ISO-8859-1")
 else:
     url = "https://drive.google.com/uc?id=1kaDONiLBMdYIiufE0iAsZEosVBjsaLMG"
-    df = pd.read_csv(url, encoding="ISO-8859-1")
+    output = "pharma-data.csv"
+    gdown.download(url, output, quiet=False)
+    df = pd.read_csv(output, encoding="ISO-8859-1")
 
 # sidebar
 st.sidebar.header("Pharmaceutical Dashboard")
@@ -167,6 +170,7 @@ with st.expander("View Data"):
 # Download original DataSet  
 csv = df.to_csv(index = False).encode("utf=8")
 st.download_button("Download Data",data = csv , file_name = "Data.csv",mime = "text/csv")
+
 
 
 
