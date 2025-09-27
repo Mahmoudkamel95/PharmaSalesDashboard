@@ -21,8 +21,8 @@ if f1 is not None:
     st.write(filename)
     df=pd.read_csv(filename,encoding= "ISO-8859-1")
 else:
-    
-    df =pd.read_csv(r"C:\Users\Swefi Store\Desktop\New folder\pharma-data.csv",encoding= "ISO-8859-1") 
+    url = "https://drive.google.com/uc?id=1kaDONiLBMdYIiufE0iAsZEosVBjsaLMG"
+    df = pd.read_csv(url, encoding="ISO-8859-1")
 
 # sidebar
 st.sidebar.header("Pharmaceutical Dashboard")
@@ -167,6 +167,7 @@ with st.expander("View Data"):
 # Download original DataSet  
 csv = df.to_csv(index = False).encode("utf=8")
 st.download_button("Download Data",data = csv , file_name = "Data.csv",mime = "text/csv")
+
 
 
 
