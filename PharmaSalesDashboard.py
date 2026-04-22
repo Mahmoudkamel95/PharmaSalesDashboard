@@ -73,10 +73,10 @@ st.sidebar.markdown("Made With Dr.Mahmoud Kamel")
 
  # body
 a1, a2, a3, a4 =st.columns(4)
-a1.metric("Total Sales", f"{filtered_df['Sales'].sum()/1_000_000_000:.2f} B") 
-a2.metric("Total Quantity", f"{filtered_df['Quantity'].sum()/1_000_000:.2f} M") 
-a3.metric("Number of Product", filtered_df['Product Name'].nunique())
-a4.metric("Number of Customer", filtered_df['Customer Name'].nunique()) 
+a1.metric("Total Sales", f"{filtered_df['Sales'].sum()/1_000_000_000:.2f} B",border=True) 
+a2.metric("Total Quantity", f"{filtered_df['Quantity'].sum()/1_000_000:.2f} M",border=True) 
+a3.metric("Number of Product", filtered_df['Product Name'].nunique(),border=True)
+a4.metric("Number of Customer", filtered_df['Customer Name'].nunique(),border=True) 
 
 
 c1,c2 = st.columns((2))
